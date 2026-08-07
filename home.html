@@ -1,0 +1,1444 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحه اصلی</title>
+<style>
+@font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #f5f6fa;
+    font-family: 'Vazirmatn', Tahoma, Arial, sans-serif;
+    direction: rtl;
+    overflow-x: hidden;
+}
+
+.page-wrapper {
+    max-width: 1320px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #f5f6fa;
+    position: relative;
+    overflow-x: hidden;
+}
+
+.top-bar {
+    background-color: #ffffff;
+    height: 64px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+.mobile-top-bar {
+    display: none;
+    background-color: #ffffff;
+    height: 72px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    z-index: 10;
+}
+
+.mobile-top-bar .mobile-logo {
+    height: 60px;
+    width: auto;
+    object-fit: contain;
+}
+
+.top-bar .main-icon-slot {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.top-bar .main-icon-slot img {
+    height: 58px;
+    width: auto;
+    object-fit: contain;
+}
+
+.exit-area {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exit-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    text-decoration: none;
+    color: #3160a8;
+    font-size: 13px;
+    font-family: inherit;
+}
+
+.exit-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.student-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.student-info span {
+    font-size: 12px;
+    color: #333333;
+    white-space: nowrap;
+}
+
+.student-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.top-two-icons {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 300px;
+    padding: 24px 16px 20px;
+}
+
+.top-two-icons .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.top-two-icons .item img {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+}
+
+.top-two-icons .item span {
+    font-size: 13px;
+    color: #333333;
+}
+
+.services-wrap {
+    width: 1270px;
+    max-width: 100%;
+    margin: 4px auto 0;
+}
+
+.services-title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.services-title span {
+    color: #3160a8;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.services-title img {
+    width: 20px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.services-grid {
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    gap: 19px;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.services-grid::-webkit-scrollbar {
+    display: none;
+}
+
+.services-grid .card {
+    width: 220px;
+    height: 100px;
+    min-width: 220px;
+    background-color: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 6px 8px -4px rgba(0,0,0,0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 6px;
+    position: relative;
+    overflow: hidden;
+}
+
+.services-grid .card::before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: -10px;
+    width: 70px;
+    height: 70px;
+    border-radius: 0 0 60% 0;
+}
+
+.services-grid .card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 65px;
+    height: 35px;
+    border-radius: 50% 0 0 0;
+}
+
+.card.karnamenahayi::before { background-color: rgba(14, 171, 161, 0.15); }
+.card.karnamenahayi::after { background-color: rgba(14, 171, 161, 0.08); }
+
+.card.jostvajo::before { background-color: rgba(247, 98, 183, 0.15); }
+.card.jostvajo::after { background-color: rgba(247, 98, 183, 0.08); }
+
+.card.olampiad::before { background-color: rgba(11, 133, 234, 0.15); }
+.card.olampiad::after { background-color: rgba(11, 133, 234, 0.08); }
+
+.card.kotobdarsi::before { background-color: rgba(253, 105, 31, 0.15); }
+.card.kotobdarsi::after { background-color: rgba(253, 105, 31, 0.08); }
+
+.card.pishsabtnam::before { background-color: rgba(31, 178, 111, 0.15); }
+.card.pishsabtnam::after { background-color: rgba(31, 178, 111, 0.08); }
+
+.services-grid .card img {
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    align-self: flex-start;
+    position: relative;
+    z-index: 1;
+    margin-top: 5px;
+}
+
+.services-grid .card .icon-mobile {
+    display: none;
+}
+
+.services-grid .card span {
+    font-size: 13px;
+    font-weight: bold;
+    text-align: right;
+    line-height: 1.3;
+    white-space: nowrap;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    padding-right: 4px;
+}
+
+.user-name-tag {
+    display: none;
+}
+
+.card.karnamenahayi span { color: #0eaba1; }
+.card.jostvajo span { color: #f762b7; }
+.card.olampiad span { color: #0b85ea; }
+.card.kotobdarsi span { color: #fd691f; }
+.card.pishsabtnam span { color: #1fb26f; }
+
+.norino-section {
+    margin: 50px 12px 60px;
+}
+
+.norino-carousel {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding: 0 0 4px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+}
+
+.norino-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.norino-carousel .norino-slide {
+    flex: 0 0 calc((100% - 24px) / 2.1);
+    scroll-snap-align: start;
+}
+
+.norino-carousel .norino-slide img {
+    width: 100%;
+    display: block;
+    border-radius: 14px;
+    object-fit: cover;
+}
+
+.norino-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.norino-prev, .norino-next {
+    background-color: #3160a8;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+}
+
+.norino-prev:hover, .norino-next:hover {
+    background-color: #254a85;
+}
+
+
+.edu-services-section {
+    margin: 4px 12px 20px;
+}
+
+.norino-section + .edu-services-section {
+    margin-top: 40px;
+}
+
+.edu-services-panel {
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 10px 24px -10px rgba(0,0,0,0.18);
+    overflow: hidden;
+}
+
+.edu-services-header {
+    background: linear-gradient(to left, #23a596 0%, #23a596 15%, #ffffff 100%);
+    padding: 8px 22px;
+}
+
+.edu-services-header span {
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.edu-services-body {
+    padding: 28px 24px 24px;
+}
+
+.edu-services-row {
+    display: grid;
+    grid-template-columns: repeat(6, 190px);
+    gap: 16px;
+}
+
+.edu-services-row + .edu-services-row {
+    margin-top: 20px;
+}
+
+.parv-section .edu-services-row {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.parv-section .edu-card {
+    width: auto;
+}
+
+.mobile-only-section {
+    display: none;
+}
+
+.bottom-nav {
+    display: none;
+}
+
+.edu-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    position: relative;
+    width: 190px;
+    height: 61px;
+    padding: 8px 10px;
+    background-color: #f2f4f7;
+    outline: 1px solid #c9cbcd;
+    border-radius: 12px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.edu-text {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+.edu-card strong,
+.edu-card small {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.mb-break {
+    display: none;
+}
+
+.edu-card .edu-badge {
+    position: absolute;
+    top: -8px;
+    right: 0px;
+    background-color: #e74c3c;
+    color: #ffffff;
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+.edu-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.edu-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: #ffffff;
+    fill: none;
+}
+
+.edu-icon img {
+    width: 68px;
+    height: 57px;
+    object-fit: contain;
+}
+
+.edu-icon .icon-mobile {
+    display: none;
+}
+
+.edu-card strong {
+    font-size: 13.5px;
+    color: #3a3a3a;
+    line-height: 1.3;
+}
+
+.edu-card small {
+    font-size: 11px;
+    color: #9aa1ab;
+    line-height: 1.3;
+}
+
+
+.edu-card.view-all {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    gap: 10px;
+    background-color: transparent;
+    outline: none;
+}
+
+.view-all-icon {
+    display: grid;
+    grid-template-columns: repeat(2, 15px);
+    grid-template-rows: repeat(2, 15px);
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+}
+
+.view-all-icon span {
+    width: 15px;
+    height: 15px;
+    background-color: transparent;
+    border: 2px solid #3a3a3a;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+.edu-card.view-all strong {
+    color: #3a3a3a !important;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .edu-services-section {
+        margin: 20px 12px 20px;
+    }
+    .norino-section + .edu-services-section {
+        margin-top: 40px;
+    }
+    .edu-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 10px;
+    }
+    .edu-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .edu-card strong {
+        font-size: 12px;
+    }
+    .edu-card small {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-wrapper {
+        max-width: 100%;
+    }
+
+    .top-bar .main-icon-slot img {
+        height: 48px;
+    }
+
+    .top-two-icons {
+        gap: 150px;
+        padding: 20px 12px 16px;
+    }
+
+    .services-grid .card {
+        width: 180px;
+        height: 90px;
+        min-width: 180px;
+    }
+
+    .services-grid .card::before {
+        top: -18px;
+        left: -8px;
+        width: 55px;
+        height: 55px;
+    }
+
+    .services-grid .card::after {
+        width: 50px;
+        height: 28px;
+    }
+
+    .services-grid .card img {
+        width: 44px;
+        height: 44px;
+        margin-top: 4px;
+    }
+
+    .services-grid .card span {
+        font-size: 14px;
+    }
+
+    .norino-carousel .norino-slide {
+        flex: 0 0 calc((100% - 24px) / 1.5);
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar {
+        display: none;
+    }
+
+    .mobile-top-bar {
+        display: flex;
+    }
+
+    .mobile-only-section {
+        display: block;
+    }
+
+    .page-wrapper {
+        margin: 0 auto;
+        padding-bottom: 85px;
+    }
+
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        left: 10px;
+        right: 10px;
+        bottom: 8px;
+        z-index: 100;
+        background-color: #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 8px 22px -4px rgba(0, 0, 0, 0.28);
+        padding: 10px 8px;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .bottom-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 4px;
+        flex: 1;
+        text-decoration: none;
+    }
+
+    .bottom-nav-item img {
+        width: 26px;
+        height: 26px;
+        object-fit: contain;
+    }
+
+    .bottom-nav-item span {
+        font-size: 10px;
+        color: #6b6b6b;
+    }
+
+    .bottom-nav-item.active span {
+        color: #5b4fcf;
+        font-weight: bold;
+    }
+
+    .top-two-icons {
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 16px 14px 12px;
+    }
+
+    .top-two-icons .item img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .top-two-icons .item span {
+        font-size: 11px;
+    }
+
+    .services-wrap {
+        width: auto;
+        max-width: none;
+        margin: 0 8px 0;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 6px 14px -6px rgba(0, 0, 0, 0.15);
+        padding: 14px 12px;
+    }
+
+    .user-name-tag {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        margin: 22px 20px 10px 8px;
+    }
+
+    .user-name-tag img {
+        width: 20px;
+        height: 20px;
+        object-fit: contain;
+    }
+
+    .user-name-tag span {
+        font-size: 14px;
+        font-weight: 400;
+        color: #383838;
+    }
+
+    .services-title span {
+        font-size: 14px;
+        color: #383838;
+    }
+
+    .services-title img {
+        width: 18px;
+        height: 24px;
+    }
+
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px 6px;
+        overflow: visible;
+        padding-bottom: 0;
+    }
+
+    .services-grid .card {
+        width: auto;
+        height: auto;
+        min-width: 0;
+        background-color: transparent;
+        box-shadow: none;
+        border-radius: 0;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        padding: 0;
+    }
+
+    .services-grid .card::before,
+    .services-grid .card::after {
+        display: none;
+    }
+
+    .services-grid .card img {
+        width: 36px;
+        height: 36px;
+        margin-top: 0;
+        align-self: center;
+    }
+
+    .services-grid .card .icon-desktop {
+        display: none;
+    }
+
+    .services-grid .card .icon-mobile {
+        display: block;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+        border-radius: 0;
+        margin-top: 0;
+        align-self: center;
+    }
+
+    .services-grid .card span {
+        font-size: 11px;
+        color: #383838 !important;
+        text-align: center;
+        white-space: normal;
+        padding-right: 0;
+        font-weight: 400;
+    }
+
+    .norino-section {
+        margin: 32px 8px 20px;
+    }
+
+    .norino-carousel {
+        gap: 8px;
+    }
+
+    .norino-carousel .norino-slide {
+        flex: 0 0 calc((100% - 16px) / 1.3);
+    }
+
+    .norino-carousel .norino-slide img {
+        border-radius: 10px;
+    }
+
+    .norino-controls {
+        gap: 15px;
+        margin-top: 12px;
+    }
+
+    .norino-prev, .norino-next {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
+
+    .edu-services-section {
+        margin: 8px 8px 20px;
+    }
+
+    .norino-section + .edu-services-section {
+        margin-top: 40px;
+    }
+
+    .edu-services-header {
+        background: #ffffff;
+        padding: 14px 16px 0;
+    }
+
+    .edu-services-header span {
+        color: #383838;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .edu-services-body {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px 6px;
+        padding: 18px 12px 16px;
+    }
+
+    .edu-services-row {
+        display: contents;
+    }
+
+    .edu-services-row:nth-of-type(2) .edu-card:nth-child(2),
+    .edu-services-row:nth-of-type(2) .edu-card:nth-child(3),
+    .edu-services-row:nth-of-type(2) .edu-card:nth-child(4),
+    .edu-services-row:nth-of-type(2) .edu-card:nth-child(5) {
+        display: none;
+    }
+
+    .edu-card {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background-color: transparent;
+        outline: none;
+        border-radius: 0;
+    }
+
+    .edu-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+    }
+
+    .edu-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .edu-icon img {
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+    }
+
+    .edu-icon .icon-desktop {
+        display: none;
+    }
+
+    .edu-icon .icon-mobile {
+        display: block;
+    }
+
+    .edu-text {
+        align-items: center;
+        text-align: center;
+        flex: none;
+        width: 100%;
+    }
+
+    .edu-card small {
+        display: none;
+    }
+
+    .edu-card strong {
+        font-size: 11px;
+        font-weight: 400;
+        color: #383838;
+        white-space: normal;
+        overflow: visible;
+        text-overflow: initial;
+        line-height: 1.3;
+    }
+
+    .mb-break {
+        display: inline;
+    }
+
+    .edu-card .edu-badge {
+        top: -4px;
+        right: 4px;
+        font-size: 9px;
+        padding: 1px 6px;
+    }
+
+    .edu-card.view-all {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 6px;
+    }
+
+    .view-all-icon {
+        width: 30px;
+        height: 30px;
+        grid-template-columns: repeat(2, 13px);
+        grid-template-rows: repeat(2, 13px);
+    }
+
+    .view-all-icon span {
+        width: 13px;
+        height: 13px;
+    }
+
+    .edu-card.view-all strong {
+        font-size: 11px;
+        font-weight: 400;
+        white-space: normal;
+    }
+}
+.loading-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(245, 246, 250, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-overlay .loading-spinner {
+    width: 46px;
+    height: 46px;
+    border: 4px solid rgba(49, 96, 168, 0.2);
+    border-top-color: #3160a8;
+    border-radius: 50%;
+    animation: loading-spin 0.9s linear infinite;
+}
+
+.loading-overlay .loading-text {
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: bold;
+    color: #3160a8;
+}
+
+@keyframes loading-spin {
+    to { transform: rotate(360deg); }
+}
+</style>
+</head>
+<body>
+<div class="page-wrapper">
+
+
+
+<div class="top-bar">
+    <div class="main-icon-slot">
+        <img src="assets/headpage3S.png">
+    </div>
+
+<div class="exit-area" style="display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; gap: 30px;">
+  <a href="index.html" class="exit-btn" style="color: #3a3a3a;">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#3160a8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+      <polyline points="16 17 21 12 16 7"></polyline>
+      <line x1="21" y1="12" x2="9" y2="12"></line>
+    </svg>
+    خروج
+  </a>
+  <div class="student-info" style="background-color: #f8f9fa; border-radius: 50px; padding: 8px 16px;">
+    <span>برسام پیمان<span style="color: #28a745;">(دانش آموز)</span> - پایه یازدهم</span>
+    <img src="assets/copol.png">
+    </div>
+   </div> 
+</div>
+
+  <div class="mobile-top-bar">
+    <img class="mobile-logo" src="assets/headgushi.png" alt="لوگو">
+  </div>
+
+  <div class="top-two-icons">
+    <div class="item">
+        <img src="assets/salamat.png">
+      <span>نکات بهداشتی</span>
+    </div>
+  <div class="item">
+    <img src="assets/shahid.png">
+      <span>آشنایی با شهدا</span>
+    </div>
+    </div>
+
+  <div class="user-name-tag">
+      <img src="assets/usergushi.png" alt="کاربر">
+    <span>برسام پیمان</span>
+  </div>
+  <div class="services-wrap">
+    <div class="services-title">
+        <img src="assets/fire.png">
+      <span>خدمات پرکاربرد</span>
+    </div>
+
+    <div class="services-grid">
+      <a href="final.html" class="card karnamenahayi loading-trigger" style="text-decoration:none;">
+        <img class="icon-desktop" src="assets/karnamenahayi.png">
+        <img class="icon-mobile" src="assets/karnamegushi.png">
+        <span>دریافت کارنامه نهایی</span>
+      </a>
+      <div class="card jostvajo">
+        <img class="icon-desktop" src="assets/jostvajoo.png">
+        <img class="icon-mobile" src="assets/jostvajogushi.png">
+        <span>جست و جو مدارس</span>
+      </div>
+      <div class="card olampiad">
+        <img class="icon-desktop" src="assets/olampiad.png">
+        <img class="icon-mobile" src="assets/olampiadgushi.png">
+        <span>نتایج المپیاد</span>
+      </div>
+      <div class="card kotobdarsi">
+        <img class="icon-desktop" src="assets/kotobdarsi.png">
+        <img class="icon-mobile" src="assets/kotobgushi.png">
+        <span>کتب درسی</span>
+      </div>
+      <div class="card pishsabtnam">
+        <img class="icon-desktop" src="assets/pishsabtnam.png">
+        <img class="icon-mobile" src="assets/pishsabtnamgushi.png">
+        <span>پیش ثبت نام</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="norino-section">
+    <div class="norino-carousel">
+      <div class="norino-slide">
+        <img src="assets/norino.png">
+      </div>
+      <div class="norino-slide">
+        <img src="assets/norino.png">
+      </div>
+      <div class="norino-slide">
+        <img src="assets/norino.png">
+      </div>
+    </div>
+  </div>
+
+    <div class="edu-services-section">
+        <div class="edu-services-panel">
+
+            <div class="edu-services-header">
+                <span>خدمات آموزشی</span>
+            </div>
+
+            <div class="edu-services-body">
+
+                <!-- ردیف اول -->
+                <div class="edu-services-row">
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/bigketab.png" alt="کتب درسی">
+                            <img class="icon-mobile" src="assets/gushiketab.jpg" alt="کتب درسی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>کتب درسی</strong>
+                            <small>سفارش کتب درسی</small>
+                        </div>
+                    </div>
+
+                    <a href="final.html" class="edu-card icon-navy loading-trigger" style="text-decoration:none;">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/karname.png" alt="دریافت کارنامه">
+                            <img class="icon-mobile" src="assets/gushitick.jpg" alt="دریافت کارنامه">
+                        </div>
+                        <div class="edu-text">
+                            <strong>دریافت کارنامه</strong>
+                            <small>دریافت کارنامه تحصیلی سنوات</small>
+                        </div>
+                    </a>
+
+                    <div class="edu-card icon-blue">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/jostvajo.png" alt="جستجو و معرفی مدارس">
+                            <img class="icon-mobile" src="assets/gushijostvajo.jpg" alt="جستجو و معرفی مدارس">
+                        </div>
+                        <div class="edu-text">
+                            <strong>جستجو و<br class="mb-break">معرفی مدارس</strong>
+                            <small>جستجو و معرفی مدارس</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-cyan">
+                        <span class="edu-badge">جدید</span>
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/olampp.png" alt="نتایج المپیاد">
+                            <img class="icon-mobile" src="assets/gushiolampiad.jpg" alt="نتایج المپیاد">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نتایج المپیاد</strong>
+                            <small>اعتراض و نتایج</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/kart.png" alt="کارت">
+                            <img class="icon-mobile" src="assets/gushikart.jpg" alt="کارت">
+                        </div>
+                        <div class="edu-text">
+                            <strong>کارت</strong>
+                            <small>کارت</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/karname.png" alt="المپیاد ورزشی">
+                            <img class="icon-mobile" src="assets/gushitick.jpg" alt="المپیاد ورزشی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>المپیاد ورزشی</strong>
+                            <small>المپیاد ورزشی درون مدرسه‌ای</small>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- ردیف دوم -->
+                <div class="edu-services-row">
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img class="icon-desktop" src="icons/karname.png" alt="کارآموزی ـ کارورزی">
+                            <img class="icon-mobile" src="assets/gushitick.jpg" alt="کارآموزی ـ کارورزی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>کارآموزی ـ کارورزی</strong>
+                            <small>کارآموزی</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img src="icons/nazar.png" alt="نظرسنجی معلمان">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نظرسنجی معلمان</strong>
+                            <small>نظرسنجی معلمان</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img src="icons/list.png" alt="لیست دروس">
+                        </div>
+                        <div class="edu-text">
+                            <strong>لیست دروس</strong>
+                            <small>انتخاب واحد</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-cyan">
+                        <div class="edu-icon">
+                            <img src="icons/govahi.png" alt="گواهی اشتغال به تحصیل">
+                        </div>
+                        <div class="edu-text">
+                            <strong>گواهی اشتغال به تحصیل</strong>
+                            <small>گواهی اشتغال به تحصیل</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card icon-teal">
+                        <div class="edu-icon">
+                            <img src="icons/list.png" alt="پژوهشسرا">
+                        </div>
+                        <div class="edu-text">
+                            <strong>پژوهشسرا</strong>
+                            <small>پژوهشسرا</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card view-all">
+                        <div class="view-all-icon">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        <strong>مشاهده همه</strong>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="edu-services-section parv-section">
+        <div class="edu-services-panel">
+
+            <div class="edu-services-header">
+                <span>پرورشی و سلامت</span>
+            </div>
+
+            <div class="edu-services-body">
+
+                <div class="edu-services-row">
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/noorcheshmi.png" alt="نشاط مهارت آموزی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نشاط مهارت آموزی</strong>
+                            <small>نشاط مهارت آموزی</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/norinogushi.png" alt="نورینو">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نورینو</strong>
+                            <small>نورینو</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/noorcheshmi.png" alt="نور چشم">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نور چشم</strong>
+                            <small>نور چشم</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/anjoman.png" alt="انجمن اولیا و مربیان">
+                        </div>
+                        <div class="edu-text">
+                            <strong>انجمن اولیا و مربیان</strong>
+                            <small>انجمن اولیا و مربیان</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/javani.png" alt="جوانی جمعیت">
+                        </div>
+                        <div class="edu-text">
+                            <strong>جوانی جمعیت</strong>
+                            <small>جوانی جمعیت</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/namad.png" alt="نماد">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نماد</strong>
+                            <small>نماد</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/agahisalamat.png" alt="آگاهی از سلامت">
+                        </div>
+                        <div class="edu-text">
+                            <strong>آگاهی از<br class="mb-break">سلامت</strong>
+                            <small>آگاهی از سلامت</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card view-all">
+                        <div class="view-all-icon">
+                            <span></span><span></span><span></span><span></span>
+                        </div>
+                        <strong>مشاهده همه</strong>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="edu-services-section mobile-only-section">
+        <div class="edu-services-panel">
+
+            <div class="edu-services-header">
+                <span>خدمات اداری</span>
+            </div>
+
+            <div class="edu-services-body">
+
+                <div class="edu-services-row">
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/etela.jpg" alt="اطلاعیه ها">
+                        </div>
+                        <div class="edu-text">
+                            <strong>اطلاعیه ها</strong>
+                            <small>اطلاعیه ها</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/edari.jpg" alt="رسیدگی به تخلفات اداری">
+                        </div>
+                        <div class="edu-text">
+                            <strong>رسیدگی به<br class="mb-break">تخلفات اداری</strong>
+                            <small>رسیدگی به تخلفات اداری</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/shekayat.jpg" alt="پاسخگویی به شکایات">
+                        </div>
+                        <div class="edu-text">
+                            <strong>پاسخگویی به<br class="mb-break">شکایات</strong>
+                            <small>پاسخگویی به شکایات</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="edu-services-section mobile-only-section">
+        <div class="edu-services-panel">
+
+            <div class="edu-services-header">
+                <span>خدمات ویژه</span>
+            </div>
+
+            <div class="edu-services-body">
+
+                <div class="edu-services-row">
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/headphone.jpg" alt="بازی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>بازی</strong>
+                            <small>بازی</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/nazar.jpg" alt="نظرسنجی">
+                        </div>
+                        <div class="edu-text">
+                            <strong>نظرسنجی</strong>
+                            <small>نظرسنجی</small>
+                        </div>
+                    </div>
+
+                    <div class="edu-card">
+                        <div class="edu-icon">
+                            <img src="assets/headphone.jpg" alt="همیار">
+                        </div>
+                        <div class="edu-text">
+                            <strong>همیار</strong>
+                            <small>همیار</small>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="bottom-nav">
+    <a href="page3.html" class="bottom-nav-item">
+        <img src="assets/karbari.jpg" alt="کاربری">
+        <span>کاربری</span>
+    </a>
+    <a href="#" class="bottom-nav-item">
+        <img src="assets/hamyar.jpg" alt="همیار">
+        <span>همیار</span>
+    </a>
+    <a href="page3.html" class="bottom-nav-item active">
+        <img src="assets/khane.jpg" alt="خانه">
+        <span>خانه</span>
+    </a>
+    <a href="#" class="bottom-nav-item">
+        <img src="assets/kandu.jpg" alt="کندو">
+        <span>کندو</span>
+    </a>
+    <a href="#" class="bottom-nav-item">
+        <img src="assets/bishtar.jpg" alt="بیشتر">
+        <span>بیشتر</span>
+    </a>
+</div>
+
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">در حال دریافت اطلاعات...</div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var overlay = document.getElementById('loadingOverlay');
+    var triggers = document.querySelectorAll('.loading-trigger');
+
+    triggers.forEach(function (el) {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            var target = el.getAttribute('href');
+            overlay.classList.add('active');
+            setTimeout(function () {
+                window.location.href = target;
+            }, 7000);
+        });
+    });
+});
+</script>
+
+</body>
+</html>
