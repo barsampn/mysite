@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>ورود</title>
+<style>
+  @font-face {
+    font-family: 'Vazirmatn';
+    src: url('fonts/Vazirmatn.ttf') format('truetype');
+    font-weight: 400;
+    font-display: swap;
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    overflow: hidden;
+    font-family: 'Vazirmatn', Tahoma, "Segoe UI", sans-serif;
+  }
+
+  .stage {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .loading-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #444;
+    font-size: 20px;
+    letter-spacing: 1px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  @media (max-width: 700px) {
+    .loading-text {
+      font-size: 18px;
+    }
+  }
+
+  .dots span {
+    opacity: 0;
+    animation: blink 1.4s infinite;
+  }
+  .dots span:nth-child(1) { animation-delay: 0s; }
+  .dots span:nth-child(2) { animation-delay: 0.2s; }
+  .dots span:nth-child(3) { animation-delay: 0.4s; }
+
+  @keyframes blink {
+    0%, 20% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+  }
+
+  .zr {
+    position: absolute;
+    width: clamp(70px, 15vw, 140px);
+    height: clamp(70px, 15vh, 140px);
+  }
+  .zr-t { top: 0; right: 0; }
+  .zr-b { bottom: 0; right: 0; }
+
+  .zl {
+    position: absolute;
+    left: 0;
+    width: clamp(60px, 12vw, 110px);
+    height: calc(100% / 12);
+    min-height: 46px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="loading-text" id="loadingText">
+    در حال بارگذاری<span class="dots"><span>.</span><span>.</span><span>.</span></span>
+  </div>
+
+  <div class="zr zr-t" id="w13"></div>
+  <div class="zr zr-b" id="w14"></div>
+
+  <div id="leftZones"></div>
+</div>
+
+<script>
+  const h_ = "a0ad26eb27d80d888127f68b002310a819e73aa464c9a72e6e2b8e9a643071fc";
+  const e_ = "QVJLVAICWUBBXQ==";
+
+  const m_ = 10;
+  let c_ = [];
+
+  async function f1(s) {
+    const b = new TextEncoder().encode(s);
+    const d = await crypto.subtle.digest('SHA-256', b);
+    return Array.from(new Uint8Array(d))
+      .map(x => x.toString(16).padStart(2, '0'))
+      .join('');
+  }
+
+  function f2(b64, k) {
+    const d = atob(b64);
+    let r = "";
+    for (let i = 0; i < d.length; i++) {
+      r += String.fromCharCode(d.charCodeAt(i) ^ k.charCodeAt(i % k.length));
+    }
+    return r;
+  }
+
+  async function f3(k) {
+    try {
+      const u = f2(e_, k);
+      window.location.href = u;
+    } catch (err) {}
+  }
+
+  async function f4(z) {
+    c_.push(z);
+    if (c_.length > m_) c_.shift();
+
+    for (let len = 1; len <= c_.length; len++) {
+      const s = c_.slice(c_.length - len).join(',');
+      const h = await f1(s);
+      if (h === h_) {
+        f3(s);
+        return;
+      }
+    }
+  }
+
+  document.getElementById('w13').addEventListener('click', () => f4('13'));
+  document.getElementById('w14').addEventListener('click', () => f4('14'));
+
+  const container = document.getElementById('leftZones');
+  for (let i = 1; i <= 12; i++) {
+    const el = document.createElement('div');
+    el.className = 'zl';
+    el.style.top = ((i - 1) * (100 / 12)) + '%';
+    el.id = 'w' + i;
+    el.addEventListener('click', () => f4(String(i)));
+    container.appendChild(el);
+  }
+</script>
+
+</body>
+</html>

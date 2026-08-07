@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>صفحه ورود</title>
+<style>
+  @font-face {
+    font-family: "Vazirmatn";
+    src: url("fonts/Vazirmatn.ttf") format("truetype");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root{
+    --page-bg:#eef2f5;
+    --card-bg:#ffffff;
+    --card-border:#dfe5ea;
+    --text-dark:#1f2937;
+    --text-gray:#8a929b;
+    --blue-dark:#0d4f8b;
+    --blue-mid:#2e7bc4;
+    --blue-light:#cfe6f7;
+    --teal:#0fa89c;
+    --link-blue:#1d6fb8;
+    --footer-teal:#f2faff;
+    --topbar-bg:#f2faff;
+    --icon-personal:#2596be;
+    --icon-org:#01bca9;
+    --icon-legal:#67bed9;
+    --otp-bg:#d6f0ff;
+    --pill-border:#1465ae;
+    --panel-shadow:0 10px 18px -8px rgba(20,74,120,.22);
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:var(--page-bg);
+    font-family:"Vazirmatn","Tahoma",sans-serif;
+    color:var(--text-dark);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+  }
+
+ 
+  .top-bar{
+    margin:0;
+    background:var(--topbar-bg);
+    border:none;
+    border-radius:0 0 26px 26px;
+    min-height:88px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: var(--panel-shadow);
+    position:relative;
+    z-index:2;
+  }
+  .top-bar .logo-placeholder{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:4px;
+    color:#b7bfc7;
+  }
+  .top-bar .logo-placeholder img{
+    max-height:56px;
+    display:block;
+  }
+  .top-bar .logo-placeholder span{
+    font-size:12px;
+  }
+
+
+  .main-wrap{
+    flex:1;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:40px 24px 60px;
+  }
+
+  .cards-row{
+    display:flex;
+    gap:26px;
+    width:100%;
+    max-width:840px;
+    align-items:stretch;
+  }
+
+  .card{
+    background:var(--card-bg);
+    border:2px solid var(--card-border);
+    border-radius:8px;
+    box-shadow: var(--panel-shadow);
+    flex:1 1 0;
+    padding:26px 24px 30px;
+    display:flex;
+    flex-direction:column;
+  }
+
+
+  .login-card{ text-align:center; }
+
+  .login-card .app-icon{
+    width:84px;
+    height:84px;
+    margin:0 auto 14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .login-card .app-icon img{
+    max-width:100%;
+    max-height:100%;
+  }
+ 
+  .mobile-logo-row{
+    display:none;
+    align-items:center;
+    justify-content:center;
+    gap:56px;
+    margin:0 auto 14px;
+  }
+  .mobile-logo-row .mobile-head-logo{
+    max-height:42px;
+    display:block;
+  }
+  .mobile-logo-row .mobile-app-icon{
+    width:60px;
+    height:60px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mobile-logo-row .mobile-app-icon img{
+    max-width:100%;
+    max-height:100%;
+  }
+  .app-icon-default{
+    width:78px;
+    height:78px;
+    border-radius:18px;
+    background:linear-gradient(135deg,#7fd6d1,#2f8fd0 60%,#1f5fa8);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#fff;
+    font-size:34px;
+    box-shadow: inset 0 0 0 4px rgba(255,255,255,.25);
+  }
+
+  .login-card h1{
+    display:inline;
+    font-size:12px;
+    font-weight:800;
+    margin:0;
+    color:#4c6da5;
+    white-space:nowrap;
+  }
+  .login-card .sub-note{
+    display:inline;
+    font-size:12px;
+    font-weight:800;
+    color:#4c6da5;
+    margin:0 0 0 6px;
+    white-space:nowrap;
+  }
+
+  .login-btn{
+    width:100%;
+    box-sizing:border-box;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    border:none;
+    border-radius:6px;
+    padding:8px 16px;
+    margin:0 0 12px;
+    cursor:pointer;
+    color:#fff;
+    font-family:inherit;
+    text-align:center;
+    text-decoration:none;
+  }
+  .login-btn .btn-texts{
+    display:flex;
+    flex-direction:column;
+    gap:2px;
+    line-height:1.5;
+  }
+  .login-btn .btn-title{
+    font-size:15px;
+    font-weight:700;
+  }
+  .login-btn .btn-desc{
+    font-size:11.5px;
+    font-weight:400;
+    opacity:.92;
+  }
+  .btn-icon{
+    width:22px;
+    height:22px;
+    flex-shrink:0;
+    margin-top:1px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .btn-icon img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    display:block;
+  }
+ 
+  .btn-personal .btn-icon,
+  .btn-org .btn-icon,
+  .btn-legal .btn-icon{
+    filter:brightness(0) invert(1);
+  }
+
+  .btn-personal,
+  .btn-org{
+    align-items:flex-start;
+  }
+
+  .btn-personal{ background:var(--blue-dark); }
+  .btn-org{ background:var(--teal); }
+  .btn-legal{
+    background:var(--blue-mid);
+  }
+  .btn-legal .btn-title{ font-size:15px; }
+
+  .divider{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--text-gray);
+    font-size:13px;
+    margin:16px 0;
+  }
+  .divider::before, .divider::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:#e6eaee;
+  }
+
+  .btn-otp{
+    background:var(--otp-bg);
+    color:#4a7fa3;
+    font-size:14px;
+    font-weight:600;
+    margin-bottom:14px;
+  }
+
+  .privacy-link{
+    display:block;
+    font-size:12.5px;
+    color:var(--link-blue);
+    text-decoration:none;
+  }
+  .privacy-link:hover{ text-decoration:underline; }
+
+ 
+  .announce-card .brand-row{
+    display:flex;
+    align-items:center;
+    margin-bottom:18px;
+  }
+
+  .brand-logo{
+    flex:1;
+  }
+  .brand-logo .logo-slot{
+    max-width:340px;
+  }
+  .brand-logo .logo-slot img{
+    max-width:100%;
+    display:block;
+  }
+
+  .announce-meta{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:1px solid #eef1f4;
+    padding-bottom:10px;
+    margin-bottom:6px;
+  }
+  .announce-meta .board-title{
+    font-size:14px;
+    font-weight:700;
+    color:#5a9cfe;
+  }
+  .announce-meta .today-date{
+    font-size:12px;
+    color:var(--text-gray);
+  }
+
+  .announce-list{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+  .announce-item{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:10px;
+    padding:14px 4px 14px 0;
+    border-bottom:1px solid #f1f3f5;
+    border-right:3px solid var(--blue-mid);
+    padding-right:14px;
+  }
+  .announce-item:last-child{ border-bottom:none; }
+
+  .announce-item .item-texts{ flex:1; }
+  .announce-item .item-title{
+    font-size:14.5px;
+    font-weight:700;
+    color:#1465ae;
+    margin-bottom:4px;
+  }
+  .announce-item .item-sub{
+    font-size:12.5px;
+    color:#515152;
+    display:flex;
+    align-items:center;
+    gap:5px;
+  }
+  .announce-item .item-sub img{
+    width:15px;
+    height:15px;
+    display:block;
+  }
+  .status-pill{
+    background:#eaf4fb;
+    color:var(--pill-border);
+    border:1.5px solid var(--pill-border);
+    font-size:11.5px;
+    font-weight:600;
+    padding:5px 12px;
+    border-radius:6px;
+    white-space:nowrap;
+    flex-shrink:0;
+  }
+
+  .show-archive{
+    display:block;
+    text-align:center;
+    font-size:14px;
+    font-weight:700;
+    color:#2c3542;
+    text-decoration:none;
+    margin-top:14px;
+    cursor:pointer;
+  }
+  .show-archive:hover{ text-decoration:underline; }
+
+ 
+  .site-footer{
+    background:var(--footer-teal);
+    text-align:center;
+    padding:12px 16px;
+    font-size:13px;
+    color:#0f5f72;
+    box-shadow:none;
+  }
+
+  @media (max-width:820px){
+    .cards-row{ flex-direction:column; }
+  }
+
+  @media (max-width:480px){
+    .top-bar{ display:none; }
+    .login-card .app-icon{ display:none; }
+    .mobile-logo-row{ display:flex; }
+    .login-card h1{
+      white-space:nowrap;
+    }
+    .login-card .sub-note{
+      white-space:nowrap;
+    }
+    .login-btn{
+      padding:6px 12px;
+      margin:0 0 9px;
+      gap:4px;
+    }
+    .btn-icon{
+      width:18px;
+      height:18px;
+    }
+    .login-btn .btn-title{
+      font-size:12.5px;
+    }
+    .login-btn .btn-desc{
+      font-size:10px;
+    }
+  }
+
+ 
+
+  .transfer-overlay{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.55);
+    z-index:9999;
+    align-items:center;
+    justify-content:center;
+  }
+  .transfer-overlay.active{
+    display:flex;
+  }
+  .transfer-overlay .transfer-box{
+    background:#ffffff;
+    border-radius:10px;
+    padding:10px 20px;
+    max-width:95vw;
+    width:max-content;
+    text-align:center;
+    box-shadow:0 2px 5px -2px rgba(0,0,0,0.15);
+  }
+  .transfer-overlay .transfer-box p{
+    margin:0;
+    color:#008002;
+    font-family:inherit;
+    font-size:13px;
+    font-weight:700;
+    line-height:1.7;
+    white-space:nowrap;
+  }
+  @media (max-width:480px){
+    .transfer-overlay .transfer-box p{
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+  }
+  @media (min-width:1024px){
+    .transfer-overlay .transfer-box{
+      border-radius:14px;
+      padding:16px 32px;
+    }
+    .transfer-overlay .transfer-box p{
+      font-size:18px;
+      white-space:nowrap;
+    }
+  }
+</style>
+</head>
+<body>
+
+
+
+
+  <div class="transfer-overlay" id="transferOverlay">
+    <div class="transfer-box">
+      <p>شما در حال انتقال به درگاه دولت من می باشید...</p>
+    </div>
+  </div>
+
+ 
+  <div class="top-bar">
+    <div class="logo-placeholder">
+      <img src="assets/head-logo.png" alt="لوگوی سایت">
+    </div>
+  </div>
+
+  <div class="main-wrap">
+    <div class="cards-row">
+      <div class="card login-card">
+        <div class="app-icon">
+          <img src="assets/logo-m.png" alt="لوگوی موسسه">
+        </div>
+
+        <div class="mobile-logo-row">
+          <img src="assets/head-logo.png" alt="لوگوی سایت" class="mobile-head-logo">
+          <div class="mobile-app-icon">
+            <img src="assets/logo-m.png" alt="لوگوی موسسه">
+          </div>
+        </div>
+
+      
+        <div class="title-row" style="margin:0 0 20px;">
+          <h1>پنجره واحد خدمات الکترونیک</h1>
+          <p class="sub-note">وزارت آمـوزش و پـرورش</p>
+        </div>
+
+        <a href="page2.html" class="login-btn btn-personal transfer-trigger">
+          <span class="btn-icon"><img src="assets/people.png" alt=""></span>
+          <span class="btn-texts">
+            <span class="btn-title">ورود به صفحه شخصی</span>
+            <span class="btn-desc">فرهنگیان، اولیاء، دانش‌آموزان و سایر کاربران</span>
+          </span>
+        </a>
+
+        <a href="page2.html" class="login-btn btn-org transfer-trigger">
+          <span class="btn-icon"><img src="assets/soha.png" alt=""></span>
+          <span class="btn-texts">
+            <span class="btn-title">ورود به پنجره سازمانی</span>
+            <span class="btn-desc">مختص امور سازمانی آموزش و پرورش</span>
+          </span>
+        </a>
+
+        <a href="page2.html" class="login-btn btn-legal transfer-trigger">
+          <span class="btn-icon"><img src="assets/user.png" alt=""></span>
+          <span class="btn-texts">
+            <span class="btn-title">ورود اشخاص حقوقی</span>
+          </span>
+        </a>
+
+        <div class="divider">یا</div>
+
+        <a href="page2.html" class="login-btn btn-otp">
+          <span class="btn-texts">
+            <span class="btn-title">ورود با رمز یک‌بار مصرف</span>
+          </span>
+        </a>
+
+        <a href="#" class="privacy-link">مطالعه بیانیه حریم خصوصی</a>
+      </div>
+
+      <div class="card announce-card">
+        <div class="brand-row">
+          <div class="brand-logo">
+            <div class="logo-slot">
+              <img src="assets/iran-logo.png" alt="ای ایران">
+            </div>
+          </div>
+        </div>
+
+        <div class="announce-meta">
+          <span class="board-title">تابلو اعلانات</span>
+          <span class="today-date" id="todayDate">امروز: ۱۴۰۵/۵/۱۱</span>
+        </div>
+
+        <ul class="announce-list">
+          <li class="announce-item">
+            <div class="item-texts">
+              <div class="item-title">پیام رسان های بله و شاد</div>
+              <div class="item-sub">جهت دریافت اطلاعیه های آموزش و پرورش می توانید با سیم کارتی ...</div>
+            </div>
+          </li>
+
+          <li class="announce-item">
+            <div class="item-texts">
+              <div class="item-title">پیش ثبت نام</div>
+              <div class="item-sub"><img src="assets/calendar-icon.png" alt=""> معاونت ابتدایی و متوسطه</div>
+            </div>
+            <span class="status-pill">در حال انجام</span>
+          </li>
+
+          <li class="announce-item">
+            <div class="item-texts">
+              <div class="item-title">درخواست بازنشستگی/استمرار (پروفایل شخصی)</div>
+              <div class="item-sub"><img src="assets/calendar-icon.png" alt=""> مرکز برنامه ریزی</div>
+            </div>
+            <span class="status-pill">در حال انجام</span>
+          </li>
+
+          <li class="announce-item">
+            <div class="item-texts">
+              <div class="item-title">گواهی صلاحیت مدیریت</div>
+              <div class="item-sub"><img src="assets/calendar-icon.png" alt=""> مرکز برنامه ریزی</div>
+            </div>
+            <span class="status-pill">در حال انجام</span>
+          </li>
+        </ul>
+
+        <a href="#" class="show-archive">نمایش آرشیو</a>
+      </div>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+   مالکیت مادی و معنوی این سایت متعلق به وزارت آموزش و پرورش می باشد.
+  </footer>
+
+  <script>
+    (function(){function _a(a,b,c){var d=[0,31,59,90,120,151,181,212,243,273,304,334],e=a<=1600?0:979,f=a-(a<=1600?621:1600),g=b>2?f+1:f,h=365*f+parseInt((g+3)/4)-parseInt((g+99)/100)+parseInt((g+399)/400)-80+c+d[b-1];e+=33*parseInt(h/12053);h%=12053;e+=4*parseInt(h/1461);h%=1461;if(h>365){e+=parseInt((h-1)/365);h=(h-1)%365}var i,j;if(h<186){i=1+parseInt(h/31);j=1+h%31}else{i=7+parseInt((h-186)/30);j=1+(h-186)%30}return[e,i,j]}function _b(a){var b=['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'];return String(a).replace(/[0-9]/g,function(c){return b[c]})}var n=new Date(),j=_a(n.getFullYear(),n.getMonth()+1,n.getDate()),t=j[0]+'/'+j[1]+'/'+j[2],e=document.getElementById('todayDate');if(e)e.textContent='امروز: '+_b(t);var to=document.getElementById('transferOverlay'),tg=document.querySelectorAll('.transfer-trigger');tg.forEach(function(el){el.addEventListener('click',function(ev){ev.preventDefault();var tr=el.getAttribute('href');to.classList.add('active');setTimeout(function(){window.location.href=tr},6000)})})})();
+  </script>
+</body>
+</html>
