@@ -310,6 +310,8 @@ html, body {
 .modal-field label {
     font-size: clamp(11px, 2.8vw, 13px);
     color: #333333;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .modal-field .req {
@@ -795,42 +797,42 @@ html, body {
                     <td class="col-code">۱۱۰۱۱</td>
                     <td class="col-pages">۳</td>
                     <td class="col-grade">۱۸.۷۵</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('تعلیمات دینی (دینی، اخلاق و قرآن) ۲', '۱۱۰۱۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۰۱۱" data-lesson-name="تعلیمات دینی (دینی، اخلاق و قرآن) ۲" onclick="openRequestModal(this, 'تعلیمات دینی (دینی، اخلاق و قرآن) ۲', '۱۱۰۱۱')">ثبت<br>درخواست</button></td>
                 </tr>
                 <tr class="row-alt">
                     <td class="col-name">عربی، زبان قرآن ۲</td>
                     <td class="col-code">۱۱۰۲۱</td>
                     <td class="col-pages">۲</td>
                     <td class="col-grade">۱۹.۵</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('عربی، زبان قرآن ۲', '۱۱۰۲۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۰۲۱" data-lesson-name="عربی، زبان قرآن ۲" onclick="openRequestModal(this, 'عربی، زبان قرآن ۲', '۱۱۰۲۱')">ثبت<br>درخواست</button></td>
                 </tr>
                 <tr>
                     <td class="col-name">فارسی ۲</td>
                     <td class="col-code">۱۱۰۳۱</td>
                     <td class="col-pages">۳</td>
                     <td class="col-grade">۱۹.۵</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('فارسی ۲', '۱۱۰۳۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۰۳۱" data-lesson-name="فارسی ۲" onclick="openRequestModal(this, 'فارسی ۲', '۱۱۰۳۱')">ثبت<br>درخواست</button></td>
                 </tr>
                 <tr class="row-alt">
                     <td class="col-name">زبان خارجی ۲</td>
                     <td class="col-code">۱۱۰۸۱</td>
                     <td class="col-pages">۲</td>
                     <td class="col-grade">۲۰</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('زبان خارجی ۲', '۱۱۰۸۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۰۸۱" data-lesson-name="زبان خارجی ۲" onclick="openRequestModal(this, 'زبان خارجی ۲', '۱۱۰۸۱')">ثبت<br>درخواست</button></td>
                 </tr>
                 <tr>
                     <td class="col-name">شیمی ۲</td>
                     <td class="col-code">۱۱۱۱۱</td>
                     <td class="col-pages">۴</td>
                     <td class="col-grade">۱۹</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('شیمی ۲', '۱۱۱۱۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۱۱۱" data-lesson-name="شیمی ۲" onclick="openRequestModal(this, 'شیمی ۲', '۱۱۱۱۱')">ثبت<br>درخواست</button></td>
                 </tr>
                 <tr class="row-alt">
                     <td class="col-name">زیست شناسی ۲</td>
                     <td class="col-code">۱۱۱۷۱</td>
                     <td class="col-pages">۲</td>
                     <td class="col-grade">۱۹</td>
-                    <td class="col-request"><button class="btn-request" onclick="openRequestModal('زیست شناسی ۲', '۱۱۱۷۱')">ثبت<br>درخواست</button></td>
+                    <td class="col-request"><button class="btn-request" data-lesson-code="۱۱۱۷۱" data-lesson-name="زیست شناسی ۲" onclick="openRequestModal(this, 'زیست شناسی ۲', '۱۱۱۷۱')">ثبت<br>درخواست</button></td>
                 </tr>
             </tbody>
         </table>
@@ -903,12 +905,16 @@ html, body {
             <textarea id="objectionDesc" rows="2"></textarea>
         </div>
 
-        <button class="submit-objection-btn" onclick="closeRequestModal()">ثبت اعتراض</button>
+        <button class="submit-objection-btn" onclick="submitObjection()">ثبت اعتراض</button>
     </div>
 </div>
 
 <script>
-function openRequestModal(lessonName, lessonCode) {
+var currentRequestBtn = null;
+var STORAGE_PREFIX = 'objection_status_';
+
+function openRequestModal(btn, lessonName, lessonCode) {
+    currentRequestBtn = btn;
     document.getElementById('modalLessonName').textContent = lessonName;
     document.getElementById('modalLessonCode').textContent = lessonCode;
     document.getElementById('objectionType').value = 'نمره';
@@ -918,6 +924,74 @@ function openRequestModal(lessonName, lessonCode) {
 function closeRequestModal() {
     document.getElementById('requestModal').classList.remove('active');
 }
+
+function submitObjection() {
+    var desc = document.getElementById('objectionDesc').value.trim();
+    var type = document.getElementById('objectionType').value;
+    if (!desc || !type) {
+        alert('لطفا نوع اعتراض و توضیحات را وارد نمایید.');
+        return;
+    }
+    closeRequestModal();
+    if (currentRequestBtn) {
+        markRequestSubmitted(currentRequestBtn, true);
+    }
+}
+
+function markRequestSubmitted(btn, saveToStorage) {
+    btn.innerHTML = 'درخواست ثبت<br>شده';
+    btn.style.color = '#c94c4c';
+    btn.dataset.clickCount = '0';
+    btn.onclick = function () {
+        handleSubmittedClick(btn);
+    };
+    if (saveToStorage) {
+        var code = btn.dataset.lessonCode;
+        try {
+            localStorage.setItem(STORAGE_PREFIX + code, 'submitted');
+        } catch (e) {}
+    }
+}
+
+function handleSubmittedClick(btn) {
+    var count = parseInt(btn.dataset.clickCount || '0', 10) + 1;
+    btn.dataset.clickCount = count;
+    if (count >= 5) {
+        revertRequestButton(btn);
+    }
+}
+
+function revertRequestButton(btn) {
+    var lessonName = btn.dataset.lessonName;
+    var lessonCode = btn.dataset.lessonCode;
+    btn.innerHTML = 'ثبت<br>درخواست';
+    btn.style.color = '';
+    delete btn.dataset.clickCount;
+    btn.onclick = function () {
+        openRequestModal(btn, lessonName, lessonCode);
+    };
+    try {
+        localStorage.removeItem(STORAGE_PREFIX + lessonCode);
+    } catch (e) {}
+}
+
+function restoreRequestButtons() {
+    var buttons = document.querySelectorAll('.btn-request');
+    buttons.forEach(function (btn) {
+        var code = btn.dataset.lessonCode;
+        var status;
+        try {
+            status = localStorage.getItem(STORAGE_PREFIX + code);
+        } catch (e) {
+            status = null;
+        }
+        if (status === 'submitted') {
+            markRequestSubmitted(btn, false);
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', restoreRequestButtons);
 </script>
 
 <div class="bottom-nav">
