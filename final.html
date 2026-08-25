@@ -125,7 +125,7 @@ html, body {
 }
 
 .karname-table-wrap {
-    max-width: 400px;
+    max-width: 385px;
     width: 100%;
     margin: 0 auto;
 }
@@ -184,11 +184,11 @@ html, body {
     line-height: 1.6;
 }
 
-.karname-table .col-name { width: 28%; }
-.karname-table .col-code { width: 12%; }
-.karname-table .col-pages { width: 20%; }
-.karname-table .col-grade { width: 18%; }
-.karname-table .col-request { width: 22%; }
+.karname-table .col-name { width: 34%; }
+.karname-table .col-code { width: 10%; }
+.karname-table .col-pages { width: 17%; }
+.karname-table .col-grade { width: 15%; }
+.karname-table .col-request { width: 24%; }
 
 .btn-request {
     background: none;
@@ -215,11 +215,14 @@ html, body {
 @media (max-width: 480px) {
     .karname-table th,
     .karname-table td {
-        padding: 5px 2px;
-        font-size: 9px;
+        padding: 6px 2px;
+        font-size: 10px;
+    }
+    .karname-table thead th {
+        font-size: 11px;
     }
     .btn-request {
-        font-size: 9px;
+        font-size: 10px;
     }
     .mobile-break {
         display: inline;
@@ -389,7 +392,7 @@ html, body {
 }
 
 .zir-box {
-    max-width: 460px;
+    max-width: 385px;
     width: 100%;
     border: 1px solid #e2e2e2;
     border-radius: 10px;
@@ -407,7 +410,7 @@ html, body {
     background-color: #fff32e;
     color: #000000;
     font-weight: bold;
-    font-size: clamp(7.5px, 2vw, 9.5px);
+    font-size: clamp(8.5px, 2.1vw, 10.5px);
     line-height: 1.6;
     padding: 7px 0 7px 10px;
     border-radius: 3px;
@@ -416,7 +419,7 @@ html, body {
 }
 
 .zir-body p {
-    font-size: clamp(8.5px, 2.2vw, 10.5px);
+    font-size: clamp(9.5px, 2.3vw, 11.5px);
     color: #1a1a1a;
     font-weight: 600;
     line-height: 1.5;
@@ -455,7 +458,7 @@ html, body {
 
 .info-title {
     text-align: center;
-    font-size: clamp(15px, 4.2vw, 19px);
+    font-size: clamp(14px, 3.6vw, 18px);
     font-weight: bold;
     color: #000000;
     margin-bottom: 14px;
@@ -661,10 +664,11 @@ html, body {
 
     .karname-final {
         margin-top: 16px;
+        padding: 0 8px;
     }
 
     .karname-table-wrap {
-        max-width: 280px;
+        max-width: 325px;
     }
 
     .print-area {
@@ -672,27 +676,23 @@ html, body {
     }
 
     .zir-box {
-        max-width: 320px;
+        max-width: 325px;
         padding: 10px 10px 14px;
     }
 
     .zir-title-bar {
-        font-size: 8px;
+        font-size: 9px;
         padding: 6px 8px;
     }
 
     .zir-body p {
-        font-size: 8px;
+        font-size: 9px;
         line-height: 1.45;
         margin-bottom: 4px;
     }
 
     .info-card {
         margin-top: 18px;
-    }
-
-    .info-title {
-        font-size: 13px;
     }
 
     .info-label,
@@ -780,7 +780,7 @@ html, body {
 
 <div class="karname-final">
     <div class="karname-table-wrap">
-        <div class="karname-title">این نمره برگه بدون احتساب نمره مستمر و پایانی می باشد.</div>
+        <div class="karname-title">این نمره برگه بدون احتساب نمره مستمر<br class="mobile-break"> و پایانی می باشد.</div>
         <table class="karname-table">
             <thead>
                 <tr>
