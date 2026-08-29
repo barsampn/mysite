@@ -258,6 +258,14 @@ html, body {
     display: none;
 }
 
+.services-grid .card .label-mobile {
+    display: none;
+}
+
+.services-grid .card.mobile-only-card {
+    display: none;
+}
+
 .services-grid .card span {
     font-size: 13px;
     font-weight: bold;
@@ -659,8 +667,8 @@ html, body {
     }
 
     .top-two-icons .item img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
     }
 
     .top-two-icons .item span {
@@ -710,7 +718,7 @@ html, body {
     .services-grid {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
-        gap: 10px 4px;
+        gap: 8px 2px;
         overflow: visible;
         padding-bottom: 0;
     }
@@ -735,8 +743,8 @@ html, body {
     }
 
     .services-grid .card img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         margin-top: 0;
         align-self: center;
     }
@@ -747,8 +755,8 @@ html, body {
 
     .services-grid .card .icon-mobile {
         display: block;
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         object-fit: contain;
         border-radius: 0;
         margin-top: 0;
@@ -762,6 +770,46 @@ html, body {
         white-space: normal;
         padding-right: 0;
         font-weight: 400;
+    }
+
+    .services-grid .card .label-desktop {
+        display: none;
+    }
+
+    .services-grid .card .label-mobile {
+        display: block;
+    }
+
+    .services-grid .card.pishsabtnam {
+        display: none;
+    }
+
+    .services-grid .card.mobile-only-card {
+        display: flex;
+    }
+
+    .services-grid .card.olampiad {
+        order: 1;
+    }
+
+    .services-grid .card.karnamenahayi {
+        order: 2;
+    }
+
+    .services-grid .card.jostvajo {
+        order: 3;
+    }
+
+    .services-grid .card.kotobdarsi {
+        order: 4;
+    }
+
+    .services-grid .card.nahayi2 {
+        order: 5;
+    }
+
+    .services-grid .card.namad2 {
+        order: 6;
     }
 
     .norino-section {
@@ -842,8 +890,8 @@ html, body {
     }
 
     .edu-icon {
-        width: 38px;
-        height: 38px;
+        width: 40px;
+        height: 40px;
         border-radius: 8px;
     }
 
@@ -853,8 +901,8 @@ html, body {
     }
 
     .edu-icon img {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
         object-fit: contain;
     }
 
@@ -1017,7 +1065,8 @@ html, body {
       <a href="final.html" class="card karnamenahayi loading-trigger" style="text-decoration:none;">
         <img class="icon-desktop" src="assets/karnamenahayi.png">
         <img class="icon-mobile" src="assets/karnamegushi.png">
-        <span>نتایح آزمون <br class="mb-break">نهایی</span>
+        <span class="label-desktop">نتایح آزمون <br class="mb-break">نهایی</span>
+        <span class="label-mobile">دریافت کارنامه</span>
       </a>
       <div class="card jostvajo">
         <img class="icon-desktop" src="assets/jostvajoo.png">
@@ -1039,7 +1088,16 @@ html, body {
         <img class="icon-mobile" src="assets/pishsabtnamgushi.png">
         <span>پیش ثبت نام</span>
       </div>
+      <a href="final.html" class="card nahayi2 loading-trigger mobile-only-card" style="text-decoration:none;">
+        <img class="icon-mobile" src="assets/nahayigushi2.jpg">
+        <span>نتایج آزمون <br class="mb-break">نهایی</span>
+      </a>
+      <div class="card namad2 mobile-only-card">
+        <img class="icon-mobile" src="assets/namadgushi2.jpg">
+        <span>نماد</span>
+      </div>
     </div>
+
   </div>
 
   <div class="norino-section">
